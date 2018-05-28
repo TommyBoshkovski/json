@@ -36,6 +36,7 @@ function subcategory()
 
 function myFunction(){
     var x = document.getElementById("myFile");
+    
     var txt ="";
     var fil = new Array(); 
     if ('files' in x) {
@@ -48,12 +49,9 @@ function myFunction(){
                  var ext = file.name.split(".");
                  if(ext[ext.length-1] == "nii" || ext[ext.length-2] == "nii"){
                  fil.push(file.name);
+                 
                 txt += "<tr><td><strong>" + file.webkitRelativePath + "</strong></td>";
                 txt +="<td><select id=\""+ ext[0]+ "\">"
-                txt +="<option value=\"No\">Don't include</option>";
-                txt +="<option value=\"MTw\">MTw</option>";
-                txt += "<option value=\"T1w\">T1w</option>";
-                txt += "<option value=\"PDw\">PDw</option>";
                 txt += "</select></td>"
                 txt += "<td><input type=\"number\" id=\"" + ext[0] + "_TR\"/></td>"
                 txt += "<td><input type=\"number\" id=\"" + ext[0] + "_FA\"/></td></tr>"
@@ -73,11 +71,37 @@ function myFunction(){
         }
     }
     document.getElementById("demo").innerHTML = txt;
+    fill_list(fil)
+}
+
+function fill_list(x)
+{
+    for (var i = 0; i < x.length; i++) {
+    ext = x[i].split(".");
+    el = document.getElementById(ext[0]);
+    var option = document.createElement("option");
+    option.text = "Don't include";
+    option.value = "No";
+    el.add(option);
+    var option = document.createElement("option");
+    option.text = "MTw";
+    option.value = "MTw";
+    el.add(option);
+    var option = document.createElement("option");
+    option.text = "T1w";
+    option.value = "T1w";
+    el.add(option);
+    var option = document.createElement("option");
+    option.text = "PDw";
+    option.value = "PDw";
+    el.add(option);
+}
 }
 function createJson()
 {
+    var y = document.getElementById('subCategory');
 jsonFile ={};
-jsonFile["mt_sat"] = {};
+jsonFile[y.options[y.selectedIndex].value] = {};
 f = sessionStorage.getItem("files");
 files = f.split(",")
 for(var i =0; i<files.length; i++){
@@ -87,10 +111,10 @@ var tr = document.getElementById(ext[0] + "_TR").value;
 var fa = document.getElementById(ext[0] + "_FA").value;
 if(im.value !="Don't include")
 {
-    jsonFile["mt_sat"][im]={};
- jsonFile["mt_sat"][im]["Filename"] = files[i]; 
- jsonFile["mt_sat"][im]["FlipAngle"]=fa;
-  jsonFile["mt_sat"][im]["RepetitionTime"]=tr;
+    jsonFile[y.options[y.selectedIndex].value][im]={};
+ jsonFile[y.options[y.selectedIndex].value][im]["Filename"] = files[i]; 
+ jsonFile[y.options[y.selectedIndex].value][im]["FlipAngle"]=fa;
+  jsonFile[y.options[y.selectedIndex].value][im]["RepetitionTime"]=tr;
 } 
 }
 var obj = JSON.stringify(jsonFile, null, "\t");
