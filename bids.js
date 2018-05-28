@@ -58,7 +58,7 @@ function myFunction(){
         if (x.files.length == 0) {
             txt = "Select one or more files.";
         } else {
-            txt += "<table id=\"res\"><tr><td><strong>Filename</strong></td><td><strong>Image Type</strong></td><td><strong>Repetition Time</strong></td><td><strong>Flip Angle</strong></td></tr>"
+            txt += "<table id=\"res\"><tr><td><strong>Filename</strong></td><td><strong>Image Type</strong></td><td><strong>Repetition Time (in sec)</strong></td><td><strong>Flip Angle</strong></td></tr>"
             for (var i = 0; i < x.files.length; i++) {
                  var file = x.files[i];
                  var ext = file.name.split(".");
