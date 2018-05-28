@@ -1,3 +1,39 @@
+var catSubCat = [];
+catSubCat["T1_Relaxometry"] = ["Inversion Recovery", "T1 VFA"];
+catSubCat["T2_Relaxometry"] = ["MWF"];
+catSubCat["Noise"] = ["Noise Level"];
+catSubCat["Magnetization_transfer"] = ["MT Sat","qMT bssfp","qMT sirfse","qMT spgr"];
+catSubCat["Diffusion"] = ["DTI","CHARMED","NODDI"];
+catSubCat["FieldMaps"] = ["B0", "B1"];
+
+var subCat = [];
+subCat["T1_Relaxometry"] = ["inversion_recovery", "vfa_t1"];
+subCat["T2_Relaxometry"] = ["mwf"];
+subCat["Noise"] = ["Noise Level"];
+subCat["Magnetization_transfer"] = ["mt_sat","qmt_bssfp","qmt_sirfse","qmt_spgr"];
+subCat["Diffusion"] = ["dti","charmed","noddi"];
+subCat["FieldMaps"] = ["b0_dem", "b1_dam"];
+
+function subcategory()
+{
+    var x = document.getElementById('category');
+    var y = document.getElementById('subCategory');
+    while (y.length > 0) 
+    {
+        y.remove(y.length-1);
+    }
+    var cat = x.options[x.selectedIndex].value;
+    for (var i = 0; i < subCat[cat].length; i++) {
+        var option = document.createElement("option");
+        option.text = catSubCat[cat][i];
+        option.value = subCat[cat][i];
+        y.add(option);
+    };
+
+
+}
+
+
 function myFunction(){
     var x = document.getElementById("myFile");
     var txt ="";
@@ -16,13 +52,13 @@ function myFunction(){
                 txt +="<label>type:</label><select id=\""+ ext[0]+ "\">"
                 txt +="<option value=\"No\">Don't include</option>";
                 txt +="<option value=\"MTw\">MTw</option>";
- 				txt	+= "<option value=\"T1w\">T1w</option>";
-  				txt	+= "<option value=\"PDw\">PDw</option>";
+                txt += "<option value=\"T1w\">T1w</option>";
+                txt += "<option value=\"PDw\">PDw</option>";
                 txt += "</select><br/><label>Repetition Time</label>"
-				txt += "<input type=\"number\" id=\"" + ext[0] + "_TR\"/>"
+                txt += "<input type=\"number\" id=\"" + ext[0] + "_TR\"/>"
                 txt += "<br/><label>Flip Angle</label>"
-				txt += "<input type=\"number\" id=\"" + ext[0] + "_FA\"/><br/>"
-               	
+                txt += "<input type=\"number\" id=\"" + ext[0] + "_FA\"/><br/>"
+                
               }  
             }
         }
@@ -45,7 +81,7 @@ jsonFile["mt_sat"] = {};
 f = sessionStorage.getItem("files");
 files = f.split(",")
 for(var i =0; i<files.length; i++){
-	var ext = files[i].split(".");
+    var ext = files[i].split(".");
 var im = document.getElementById(ext[0]).value;
 var tr = document.getElementById(ext[0] + "_TR").value;
 var fa = document.getElementById(ext[0] + "_FA").value;

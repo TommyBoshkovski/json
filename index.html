@@ -4,8 +4,25 @@
 <script src="./bids.js"> </script>
 </head>
 <body>
-
-<input type="file" id="myFile" accept=".nii" webkitdirectory directory multiple onchange="myFunction()"/>
+<label>Select Category:</label>
+<select id="category" onchange="subcategory()">
+<option value="T1_Relaxometry">T1 Relaxometry</option>
+<option value="T2_Relaxometry">T2 Relaxometry</option>
+<option value="Magnetization_transfer">Magnetization Transfer</option>
+<option value="FieldMaps">Field Maps</option>
+<option value="Diffusion">Diffusion Imaging</option>
+<option value="Noise">Noise/option>
+</select>
+<br/>
+<label>Select Method:</label>
+<select id="subCategory">
+	<option value="inversion_recovery">Inversion Recovery</option>
+	<option value="vfa_t1">T1 VFA</option>
+</select>
+<br/>
+<label>Path data</label>
+<label for="myFile">Browse</label>
+<input type="file" id="myFile" accept=".nii" webkitdirectory directory multiple onchange="myFunction()" data-buttonText="Browse"/>
 
 <p id="demo"></p>
 
