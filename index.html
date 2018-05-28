@@ -2,10 +2,38 @@
 <html>
 <head>
 <script src="./bids.js"> </script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+
+table#in th {
+   
+    text-align: left;
+}
+table#in td {
+    padding: 10px;
+    text-align: left;
+}
+table#res th, td {
+    padding: 15px;
+    text-align: center;
+}
+
+</style>
+
 </head>
 <body>
-<label>Select Category:</label>
-<select id="category" onchange="subcategory()">
+
+<table id="in">
+	<tr><td>
+<label>Select Category:</label></td>
+<td><select id="category" onchange="subcategory()">
 <option value="T1_Relaxometry">T1 Relaxometry</option>
 <option value="T2_Relaxometry">T2 Relaxometry</option>
 <option value="Magnetization_transfer">Magnetization Transfer</option>
@@ -13,20 +41,21 @@
 <option value="Diffusion">Diffusion Imaging</option>
 <option value="Noise">Noise/option>
 </select>
-<br/>
-<label>Select Method:</label>
-<select id="subCategory">
+</td></tr>
+<tr><td>
+<label>Select Method:</label></td>
+<td><select id="subCategory">
 	<option value="inversion_recovery">Inversion Recovery</option>
 	<option value="vfa_t1">T1 VFA</option>
 </select>
-<br/>
-<label>Path data</label>
-<label for="myFile">Browse</label>
-<input type="file" id="myFile" accept=".nii" webkitdirectory directory multiple onchange="myFunction()" data-buttonText="Browse"/>
-
+</td></tr>
+<tr><td>
+<label>Path data</label></td>
+<td><label for="myFile" class="btn btn-primary">Browse</label>
+<input type="file" id="myFile" style="visibility:hidden;" accept=".nii" webkitdirectory directory multiple onchange="myFunction()" data-buttonText="Browse"/></td>
+</tr>
+</table>
 <p id="demo"></p>
 
-<p><input type="submit" onclick="createJson()"></p>
-<p id="json"></p>
 </body>
 </html>

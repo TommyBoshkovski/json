@@ -42,25 +42,25 @@ function myFunction(){
         if (x.files.length == 0) {
             txt = "Select one or more files.";
         } else {
+            txt += "<table id=\"res\"><tr><td><strong>Filename</strong></td><td><strong>Image Type</strong></td><td><strong>Repetition Time</strong></td><td><strong>Flip Angle</strong></td></tr>"
             for (var i = 0; i < x.files.length; i++) {
                  var file = x.files[i];
                  var ext = file.name.split(".");
                  if(ext[ext.length-1] == "nii" || ext[ext.length-2] == "nii"){
                  fil.push(file.name);
-                txt += "<br><strong>" + (i+1) + ". ";
-                txt += "" + file.webkitRelativePath + "</strong><br>";
-                txt +="<label>type:</label><select id=\""+ ext[0]+ "\">"
+                txt += "<tr><td><strong>" + file.webkitRelativePath + "</strong></td>";
+                txt +="<td><select id=\""+ ext[0]+ "\">"
                 txt +="<option value=\"No\">Don't include</option>";
                 txt +="<option value=\"MTw\">MTw</option>";
                 txt += "<option value=\"T1w\">T1w</option>";
                 txt += "<option value=\"PDw\">PDw</option>";
-                txt += "</select><br/><label>Repetition Time</label>"
-                txt += "<input type=\"number\" id=\"" + ext[0] + "_TR\"/>"
-                txt += "<br/><label>Flip Angle</label>"
-                txt += "<input type=\"number\" id=\"" + ext[0] + "_FA\"/><br/>"
+                txt += "</select></td>"
+                txt += "<td><input type=\"number\" id=\"" + ext[0] + "_TR\"/></td>"
+                txt += "<td><input type=\"number\" id=\"" + ext[0] + "_FA\"/></td></tr>"
                 
               }  
             }
+            txt += "<tr><td><input type=\"submit\" class=\"btn btn-success\" onclick=\"createJson()\"></td></tr></table>"
         }
         sessionStorage.setItem("files", fil);
     } 
