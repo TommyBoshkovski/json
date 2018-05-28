@@ -50,7 +50,7 @@ function myFunction(){
                  if(ext[ext.length-1] == "nii" || ext[ext.length-2] == "nii"){
                  fil.push(file.name);
                  
-                txt += "<tr><td><strong>" + file.webkitRelativePath + "</strong></td>";
+                txt += "<tr><td><strong style=\"color:red;\">" + file.webkitRelativePath + "</strong></td>";
                 txt +="<td><select id=\""+ ext[0]+ "\">"
                 txt += "</select></td>"
                 txt += "<td><input type=\"number\" id=\"" + ext[0] + "_TR\"/></td>"
