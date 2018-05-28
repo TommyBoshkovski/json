@@ -121,17 +121,20 @@ f = sessionStorage.getItem("files");
 files = f.split(",")
 for(var i =0; i<files.length; i++){
     var ext = files[i].split(".");
-var im = document.getElementById(ext[0]).value;
-var tr = document.getElementById(ext[0] + "_TR").value;
-var fa = document.getElementById(ext[0] + "_FA").value;
-if(im.value !="No")
-{
-    jsonFile[y.options[y.selectedIndex].value][im]={};
- jsonFile[y.options[y.selectedIndex].value][im]["Filename"] = files[i]; 
- jsonFile[y.options[y.selectedIndex].value][im]["FlipAngle"]=fa;
-  jsonFile[y.options[y.selectedIndex].value][im]["RepetitionTime"]=tr;
-} 
+    var im = document.getElementById(ext[0]).value;
+    var tr = document.getElementById(ext[0] + "_TR").value;
+    var fa = document.getElementById(ext[0] + "_FA").value;
+    if(im != "No")
+    {
+        jsonFile[y.options[y.selectedIndex].value][im]={};
+        jsonFile[y.options[y.selectedIndex].value][im]["Filename"] = files[i]; 
+        jsonFile[y.options[y.selectedIndex].value][im]["FlipAngle"]=fa;
+        jsonFile[y.options[y.selectedIndex].value][im]["RepetitionTime"]=tr;
+    } 
 }
+
+
+
 var obj = JSON.stringify(jsonFile, null, "\t");
 
     
