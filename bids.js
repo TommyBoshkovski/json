@@ -14,6 +14,21 @@ subCat["Magnetization_transfer"] = ["mt_sat","qmt_bssfp","qmt_sirfse","qmt_spgr"
 subCat["Diffusion"] = ["dti","charmed","noddi"];
 subCat["FieldMaps"] = ["b0_dem", "b1_dam"];
 
+var methodData = [];
+methodData["inversion_recovery"] = ["Inversion Data", "Mask"];
+methodData["mt_sat"] = ["T1w", "MTw", "PDw"];
+
+
+
+var methodParams = [];
+methodParams["inversion_recovery"] = ["Inversion Times", "Mask"];
+methodParams["mt_sat"] = ["Repetition Time", "Flip Angle"];
+
+
+
+
+
+
 function subcategory()
 {
     var x = document.getElementById('category');
@@ -109,7 +124,7 @@ for(var i =0; i<files.length; i++){
 var im = document.getElementById(ext[0]).value;
 var tr = document.getElementById(ext[0] + "_TR").value;
 var fa = document.getElementById(ext[0] + "_FA").value;
-if(im.value !="Don't include")
+if(im.value !="No")
 {
     jsonFile[y.options[y.selectedIndex].value][im]={};
  jsonFile[y.options[y.selectedIndex].value][im]["Filename"] = files[i]; 
